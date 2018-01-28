@@ -1,44 +1,13 @@
 /* global responsiveVoice */
-import React, { Component } from 'react';
-const VoiceInputForm = ({addVoiceText}) => {
-    // Input Tracker
-    let input;
-    // Return JSX
-    return (
-        <form onSubmit={(e) => {
-            e.preventDefault();
-            addVoiceText(input.value);
-            input.value = '';
-        }}>
-
-            <input className="form-control col-md-12" placeholder="Add text to get the voice" ref={node => {
-                input = node;
-            }} />
-            <br />
-        </form>
-    );
-};
-
-const VoiceText = ({voiceText, speech, remove, index}) => {
-    // Each VoiceText
-    return (<li className="list-group-item" onClick={() => {speech(voiceText.id)}}>
-        {voiceText.id}. {voiceText.text}
-        {/*<span className="btn btn-primary pull-right remove-voice-text-item-btn" onClick={(e) => {e.preventDefault(); remove(voiceText.id)}}>X</span>*/}
-    </li>);
-}
-
-const VoiceTextList = ({voiceTexts, speech, remove}) => {
-    // Map through the voiceTexts
-    console.log('length of voiceText', voiceTexts);
-    const voiceTextNode = voiceTexts.map((voiceText, i) => {
-
-        return (<VoiceText voiceText={voiceText} key={voiceText.id} speech={speech} remove={remove} index={voiceText.id} tabindex={voiceText.id + 3}/>)
-    });
-    return (<div>
-        <h3>{voiceTexts.length? "Click on / press key number of  the list item to trigger voice" :  ""}</h3>
-        <div className="list-group" style={{marginTop:'30px'}}>{voiceTextNode}</div>
-        </div>);
-}
+import React from 'react';
+import DeviceChooser from './DeviceChooser';
+import DevicePreview from './DevicePreview';
+import VoiceChooser from './VoiceChooser';
+import VoiceTextInputForm from './VoiceTextInputForm';
+import VoiceTextList from './VoiceTextList';
+import Grid from 'material-ui/Grid';
+import Switch from 'material-ui/Switch';
+import { FormControlLabel, FormGroup } from 'material-ui/Form';
 
 class VoiceXApp extends React.Component{
     constructor(props){
@@ -47,9 +16,15 @@ class VoiceXApp extends React.Component{
         this.handleKeypress = this.handleKeypress.bind(this);
         this.handleSpeech = this.handleSpeech.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
+        this.updateLocalStorage = this.updateLocalStorage.bind(this);
+        this.clearList = this.clearList.bind(this);
+        this.selectDevice = this.selectDevice.bind(this);
+        this.handleUpdate = this.handleUpdate.bind(this);
+        this.handleTestModeChange = this.handleTestModeChange.bind(this);
         // Set initial state
         this.state = {
-            data: []
+            data: JSON.parse(localStorage.getItem('data')) || [],
+            testingMode: false
         }
     }
 
@@ -75,6 +50,19 @@ class VoiceXApp extends React.Component{
         console.log('state', this.state.data);
         this.setState({
             data: this.state.data
+        });
+        this.updateLocalStorage();
+    }
+
+    updateLocalStorage() {
+        localStorage.setItem('data', JSON.stringify(this.state.data));
+    }
+
+    clearList() {
+        this.setState({
+            data: []
+        }, () => {
+            this.updateLocalStorage();
         })
     }
 
@@ -92,19 +80,85 @@ class VoiceXApp extends React.Component{
         });
 
         this.setState({data: remainder});
+        this.updateLocalStorage();
     }
+
+    handleUpdate (value, id) {
+        // Filter all voiceTexts except the one to be removed
+        const remainder = this.state.data.map((voiceText) => {
+            if(voiceText.id === id) {
+                return {text: value, id};
+            }
+
+            return voiceText;
+        });
+
+        this.setState({data: remainder});
+        this.updateLocalStorage();
+    }
+
+    handleTestModeChange(event, checked) {
+        this.setState({ testingMode: checked });
+    }
+    selectDevice(name) {
+        this.setState({
+            selectedDeviceUrl: name
+        });
+    }
+
     render() {
+        const {testingMode} = this.state;
+        const voiceContainerClassName = testingMode? 'testing-mode-on' : '';
         // Render JSX
         return (
-            <div className="voice-container container">
-                <div className="row">
-                        <VoiceInputForm addVoiceText={this.addVoiceText.bind(this)}/>
-                        <VoiceTextList
-                            voiceTexts={this.state.data}
-                            speech={this.handleSpeech.bind(this)}
-                            remove={this.handleRemove.bind(this)}
-                        />
-                </div>
+            <div className={voiceContainerClassName}>
+                <Grid container
+                      spacing={24}
+                      alignItems='center'
+                      direction='row'
+                      justify='center'>
+                    <Grid item xs={12}>
+                        <Grid container justify="flex-end">
+                            <FormGroup>
+                                <FormControlLabel
+                                    control={
+                                        <Switch checked={testingMode} onChange={this.handleTestModeChange} aria-label="TestingModeSwitch" />
+                                    }
+                                    label={testingMode ? 'Testing mode on' : 'Testing mode off'}
+                                />
+                            </FormGroup>
+                        </Grid>
+                    </Grid>
+                    {!testingMode && (<Grid item xs={12} sm={4} md={4}>
+                        <Grid container>
+                            <Grid item xs={12}>
+                                <VoiceChooser />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <DeviceChooser  clickHandler={this.selectDevice} />
+                            </Grid>
+                        </Grid>
+                    </Grid>)}
+                </Grid>
+                {!testingMode && (<Grid>
+                    <div className="speech-bubble tri-right border round btm-left-in">
+                        <div className="talk-text">
+                            <VoiceTextInputForm addVoiceText={this.addVoiceText.bind(this)} />
+                        </div>
+                    </div>
+                </Grid>)}
+                <Grid>
+                    <DevicePreview selectedDevice={this.state.selectedDeviceUrl} />
+                </Grid>
+                <Grid>
+                    <VoiceTextList
+                        voiceTexts={this.state.data}
+                        speech={this.handleSpeech.bind(this)}
+                        remove={this.handleRemove.bind(this)}
+                        update={this.handleUpdate.bind(this)}
+                        clearList={this.clearList.bind(this)}
+                    />
+                </Grid>
             </div>
         );
     }

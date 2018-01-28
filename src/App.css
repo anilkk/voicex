@@ -28,13 +28,6 @@
 }
 
 
-.voice-container {
-  max-width: 600px;
-  text-align: left;
-  padding-top: 20px;
-}
-
-
 .list-group-item {
   margin: 10px 0;
 }
@@ -51,4 +44,114 @@
 
 .list-group-item:hover .remove-voice-text-item-btn {
   display: inline-block;
+}
+
+#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+
+.mc-input {
+  position: absolute;
+  left: -5000px;
+}
+
+
+.speech-bubble {
+  margin: 40px;
+  display: inline-block;
+  position: relative;
+  width: 300px;
+  height: auto;
+}
+
+.border {
+  border: 8px solid #3F51B5;
+}
+
+.round {
+  border-radius: 50px;
+}
+
+.tri-right.border.btm-left-in:before {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 30px;
+  right: auto;
+  top: auto;
+  bottom: -40px;
+  border: 20px solid;
+  border-color:#3F51B5 transparent transparent #3F51B5;
+}
+
+.tri-right.btm-left-in:after {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 38px;
+  right: auto;
+  top: auto;
+  bottom: -20px;
+  border: 12px solid;
+  border-color: white transparent transparent white;
+}
+
+.talk-text {
+  padding: 15px;
+}
+
+.mdl-textfield.is-focused .mdl-textfield__input {
+  border-color: #3F51B5;
+}
+.mdl-textfield.is-focused .mdl-textfield__label {
+  color: #3F51B5;
+}
+
+.voice-text-item .voice-text-edit-icon {
+  display: none;
+}
+
+.voice-text-item:hover .voice-text-edit-icon {
+  display: inline-block;
+}
+
+.voice-text-item .voice-text-clear-icon {
+  display: none;
+}
+
+.voice-text-item:hover .voice-text-clear-icon {
+  display: inline-block;
+}
+
+.voice-text-item .voice-text-save-icon {
+  display: none;
+}
+
+.edit-voice-input {
+  display: none;
+}
+
+.voice-text-item-edit-mode .voice-text-item-text {
+  display: none;
+}
+
+.voice-text-item-edit-mode .edit-voice-input {
+  display: inline-block;
+}
+
+.voice-text-item-edit-mode .voice-text-save-icon {
+  display: inline-block;
+}
+
+
+.voice-text-item-edit-mode:hover .voice-text-clear-icon,
+.voice-text-item-edit-mode:hover .voice-text-edit-icon {
+  display: none;
+}
+
+.testing-mode-on .clear-all-btn,
+.testing-mode-on .voice-text-item:hover .voice-text-clear-icon,
+.testing-mode-on .voice-text-item:hover .voice-text-edit-icon,
+.testing-mode-on .voice-text-item:hover .voice-text-save-icon{
+  display: none;
 }
