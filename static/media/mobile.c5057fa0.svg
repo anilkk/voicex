@@ -1,0 +1,14 @@
+<svg width="125" height="250" viewBox="0 0 125 250" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>iphone 8 plus front.1</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-2054 -709)">
+<g id="iphone 8 plus front.1">
+<g id="Shape">
+<use xlink:href="#path0_fill" transform="translate(2054 709)"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 113.281 0L 11.7188 0C 5.25 0 0 5.25 0 11.7188L 0 238.281C 0 244.75 5.25 250 11.7188 250L 113.281 250C 119.75 250 125 244.75 125 238.281L 125 11.7188C 125 5.25 119.75 0 113.281 0ZM 62.5 238.281C 56.0312 238.281 50.7812 233.031 50.7812 226.562C 50.7812 220.094 56.0312 214.844 62.5 214.844C 68.9688 214.844 74.2188 220.094 74.2188 226.562C 74.2188 233.031 68.9688 238.281 62.5 238.281ZM 15.625 203.125L 109.375 203.125L 109.375 31.25L 15.625 31.25L 15.625 203.125Z"/>
+</defs>
+</svg>
