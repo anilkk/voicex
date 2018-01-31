@@ -61,6 +61,7 @@ const HeaderNavigation = (props) => {
                     <img src={logo} alt="voiceX logo"/>
                 </Typography>
                 <Hidden only={['xs', 'sm']}>
+                    <Button color="inherit" href="https://youtu.be/jiGKqkXu80g" target="_blank">Getting started</Button>
                     <Button color="inherit" href="https://github.com/anilkk/voicex" target="_blank">Github</Button>
                     <Button color="inherit" href="https://twitter.com/anilbms75" target="_blank">Twitter</Button>
                 </Hidden>

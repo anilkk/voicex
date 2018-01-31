@@ -30,7 +30,7 @@ class VoiceTextInputForm extends React.Component{
     render() {
         return (<form onSubmit={this.handleSubmit}>
                 <FormControl>
-                    <InputLabel htmlFor="name-simple">Add text to get the voic</InputLabel>
+                    <InputLabel htmlFor="name-simple">Add text to get voice</InputLabel>
                     <Input
                         id="voiceText"
                         label="Hello world"

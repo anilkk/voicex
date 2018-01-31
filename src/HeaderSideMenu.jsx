@@ -58,6 +58,7 @@ class HeaderSideMenu extends React.Component {
                             <Grow in={open} id="menu-list" style={{ transformOrigin: '0 0 0' }}>
                                 <Paper>
                                     <MenuList role="menu">
+                                        <Button href="https://youtu.be/jiGKqkXu80g" target="_blank">Getting started</Button>
                                         <Button href="https://github.com/anilkk/voicex" target="_blank">Github</Button>
                                         <Button href="https://twitter.com/anilbms75" target="_blank">Twitter</Button>
                                     </MenuList>
