@@ -30,13 +30,8 @@ class VoiceTextInputForm extends React.Component{
                 <TextField
                     id="voiceText"
                     label="voice-text"
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
                     placeholder="Add text to get voice"
-                    helperText="Full width!"
                     fullWidth
-                    margin="normal"
                     onChange={this.handleChange}
                     value={this.state.voiceText}
                 />
