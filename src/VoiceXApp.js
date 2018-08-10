@@ -69,7 +69,7 @@ class VoiceXApp extends React.Component{
     // Handle speech
     handleSpeech(id) {
         this.state.data.filter((voiceText) => {
-            if (voiceText.id === id) return responsiveVoice.speak(voiceText.text);
+            if (voiceText.id === id && this.state.testingMode) return responsiveVoice.speak(voiceText.text);
         })
     }
 
