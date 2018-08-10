@@ -1,7 +1,5 @@
 import React from 'react';
-import Input, { InputLabel } from 'material-ui/Input';
-import { FormControl } from 'material-ui/Form';
-
+import TextField from 'material-ui/Input';
 
 class VoiceTextInputForm extends React.Component{
 
@@ -29,16 +27,19 @@ class VoiceTextInputForm extends React.Component{
 
     render() {
         return (<form onSubmit={this.handleSubmit}>
-                <FormControl>
-                    <InputLabel htmlFor="name-simple">Add text to get voice</InputLabel>
-                    <Input
-                        id="voiceText"
-                        label="Hello world"
-                        value={this.state.voiceText}
-                        onChange={this.handleChange}
-                        margin="normal"
-                    />
-                </FormControl>
+                <TextField
+                    id="voiceText"
+                    label="voice-text"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    placeholder="Add text to get voice"
+                    helperText="Full width!"
+                    fullWidth
+                    margin="normal"
+                    onChange={this.handleChange}
+                    value={this.state.voiceText}
+                />
             </form>);
     }
 }

@@ -53,13 +53,37 @@
   left: -5000px;
 }
 
-
 .speech-bubble {
   margin: 40px;
   display: inline-block;
   position: relative;
   width: 300px;
   height: auto;
+}
+
+@media (min-width: 576px) {
+  .speech-bubble {
+    width: 300px;
+  }
+}
+
+@media (min-width: 768px) {
+  .speech-bubble {
+    width: 500px;
+  }
+}
+
+@media (min-width: 992px) {
+
+  .speech-bubble {
+    width: 650px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .speech-bubble {
+    width: 850px;
+  }
 }
 
 .border {
