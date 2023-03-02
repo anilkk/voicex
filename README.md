@@ -1,5 +1,5 @@
 ## Welcome to VoiceX
-## VoiceX is  a low fedility prototyping tool for voice interface.
+## VoiceX is a low-fidelity prototyping tool for the voice interface. 
 
 You can switch to different languages and simulate many voice interface devices.
 
